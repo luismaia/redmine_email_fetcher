@@ -165,7 +165,6 @@ For example:
 
 The tasks recognize three environment variables:
 + **DRY_RUN** - Performs a run without changing the database.
-+ **ACTIVATE_USERS** - Activates users if they're active on LDAP.
 + **LOG_LEVEL** - Controls the rake task verbosity.
   The possible values are:
   - **silent**: Nothing is written to the output.
