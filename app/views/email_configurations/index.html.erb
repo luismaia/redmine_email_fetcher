@@ -1,0 +1,52 @@
+<h2><%= l(:title_email_config_index) %></h2>
+
+
+<div class="contextual">
+  <%= link_to(l(:label_new_email_configurations), {controller: 'email_configurations', action: 'new'}, class: 'icon icon-add') %>
+</div>
+
+<div class="template_box">
+
+  <table class="list issues">
+    <thead>
+    <tr>
+      <th><%= l(:header_config_type) %></th>
+      <th><%= l(:header_host) %></th>
+      <th><%= l(:header_port) %></th>
+      <th><%= l(:header_ssl) %></th>
+
+      <th><%= l(:header_username) %></th>
+      <th><%= l(:header_folder) %></th>
+      <th><%= l(:header_project) %></th>
+      <th><%= l(:header_tracker) %></th>
+
+      <th><%= l(:header_flg_active) %></th>
+      <th><%= l(:header_last_fetch_at) %></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <% @email_configurations.each do |config| %>
+        <tr id="email-config-<%= config.id %>">
+          <td align="center"><%= config.configuration_type.upcase %></td>
+          <td align="center"><%= config.host %></td>
+          <td align="center"><%= config.port %></td>
+          <td align="center"><%= checked_image config.ssl? %></td>
+
+          <td align="center"><%= config.username %></td>
+          <td align="center"><%= config.folder %></td>
+          <td align="center"><%= config.project %></td>
+          <td align="center"><%= config.tracker %></td>
+
+          <td align="center"><%= checked_image config.flg_active? %></td>
+          <td align="center"><%= format_object(config.last_fetch_at) %></td>
+
+          <td class="buttons">
+            <%= link_to l(:button_edit), edit_email_configuration_path(config), :class => 'icon icon-edit' %>
+            <%= link_to l(:button_test), test_email_configuration_path(config), :class => 'icon icon-test' %>
+            <%= link_to l(:button_fetch), fetch_email_configuration_path(config), :class => 'icon icon-test' %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>

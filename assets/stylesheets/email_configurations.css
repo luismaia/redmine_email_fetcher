@@ -1,0 +1,14 @@
+
+fieldset.box legend {
+    padding-left: 2px;
+    background-image: none;
+    cursor: default;
+}
+
+#admin-menu a.email-configurations {
+    background-image: url('../images/email.png');
+}
+
+#projects_list {
+    padding-left: 300px;
+}

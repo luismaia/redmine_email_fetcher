@@ -1,0 +1,15 @@
+<div class="contextual">
+  <%= link_to l(:button_delete),
+              {
+                      controller: 'email_configurations',
+                      action: 'destroy',
+                      id: @email_configuration
+              },
+              data: {confirm: l(:text_are_you_sure)},
+              method: :delete,
+              class: 'icon icon-del' %>
+</div>
+
+<h2><%= l(:title_email_config_edit) %></h2>
+
+<%= render 'form' %>
