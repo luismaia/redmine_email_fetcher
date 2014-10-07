@@ -26,43 +26,39 @@ __Remarks__:
 Installation & Upgrade
 ----------------------
 
-### Install
-
 1. **install.** - Copy your plugin directory into `#{RAILS_ROOT}/plugins`.
    If you are downloading the plugin directly from GitHub, you can do so by
    changing into the `#{RAILS_ROOT}/plugins` directory and issuing the command:
    ```
    git clone git://github.com/luismaia/redmine_email_fetcher.git
    ```
-
-### Upgrade
-
+   
    **upgrade** - Backup and replace the old plugin directory with the new
    plugin files. If you are downloading the plugin directly from GitHub, you
    can do so by changing into the plugin directory and issuing the command
    `git pull`.
 
-1. Update the ruby gems by changing into the redmine's directory and run the
+2. Update the ruby gems by changing into the redmine's directory and run the
    following command.
    ```
    bundle install
    ```
 
-2. **upgrade** - Still on the redmine's directory, run the following command
-   to upgrade your database (make a db backup before).
+3. Install the plugin by running the following command (on the redmine's directory)
+   to upgrade the database (make a db backup before) and copy current assets to 
+   `public/plugin_assets/redmine_email_fetcher`.
    ```
    rake redmine:plugins:migrate RAILS_ENV=production
    ```
 
-3. Change into redmine's directory `#{RAILS_ROOT}` and run the following
-   command.
+4. In redmine's directory `#{RAILS_ROOT}` and run the following command.
    ```
    rake -T redmine:plugins:email_fetcher RAILS_ENV=production
    ```
    If the installation/upgrade was successful you should now see the list of
    [Rake Tasks](#rake-tasks).
 
-4. Restart Redmine.
+5. Restart Redmine.
 
 You should now be able to see **Redmine Email Fetcher** listed among the plugins in
 `Administration -> Plugins`.
@@ -128,6 +124,10 @@ Open `Administration > Fetch emails` to access the plugin configuration:
 + **Method for unknown users** - How to handle emails from an unknown user where 
   ACTION can be one of the following values:
   - **accept** - the sender is considered as an anonymous user and the email is accepted (default).
+                 If you choose this option you must activate the Custom field `owner-email`, where
+                 the sender email address will be stored. Without this field activated, the email fetch will fail,
+                 since this information is indispensable to later send information back to the sender 
+                 (the [Redmine Helpdesk plugin](https://github.com/jfqd/redmine_helpdesk) may be a nice addition).
   - **ignore** - The email is ignored.
   - **create** - A user account is created for the sender (username/password are sent back to the user) 
     and the email is accepted.

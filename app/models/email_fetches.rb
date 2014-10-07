@@ -36,7 +36,7 @@ module EmailFetches
     email_options = {
         host: self.host,
         port: self.port,
-        ssl: self.ssl,
+        ssl: (self.ssl ? '1' : '0'),
         username: self.username,
         password: self.password,
         folder: nil,
@@ -78,8 +78,8 @@ module EmailFetches
         'allow_override' => nil,
 
         'unknown_user' => self.unknown_user,
-        'no_permission_check' => self.no_permission_check,
-        'no_account_notice' => self.no_account_notice,
+        'no_permission_check' => (self.no_permission_check ? '1' : '0'),
+        'no_account_notice' => (self.no_account_notice ? '1' : '0'),
         'default_group' => nil
     }
     redmine_options['allow_override'] = self.allow_override unless self.allow_override.blank?
