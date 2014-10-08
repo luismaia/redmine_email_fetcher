@@ -37,7 +37,10 @@ module EmailTests
       imap.login(self.username, self.password)
 
     rescue Net::IMAP::NoResponseError => e
-      imap.disconnect
+      begin
+        imap.disconnect
+      rescue
+      end
       return test_failure(l(:msg_login_pass_incorrect), e)
     end
 
