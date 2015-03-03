@@ -46,9 +46,11 @@ class EmailConfiguration < ActiveRecord::Base
       msg = "Fetched '#{email_config.configuration_type.upcase}' account '#{email_config.username}' (folder '#{email_config.folder}') at '#{email_config.host}':'#{email_config.port}'"
 
       if test_success
-        trace "SUCCESS: #{msg}"
+        puts "SUCCESS: #{msg}"
+        Rails.logger.info "SUCCESS : #{msg}"
       else
-        trace " ERROR : #{msg}"
+        puts "ERROR : #{msg}"
+        Rails.logger.error "ERROR : #{msg}"
       end
     end
   end
