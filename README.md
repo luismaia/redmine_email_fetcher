@@ -12,9 +12,15 @@ __Features__:
  * Adds a task which allows the cronjob to fetch emails from all active email configurations.
  * Allows a configuration to be inactivated to stop its emails synchronisation with Redmine.
 
+__Restrictions__:
+
+* The plugin requires a Ruby version equal or higher than 1.9.x.
+* The plugin requires a Rails version equal or higher than 3.x.x.
+* The plugin requires a Redmine version equal or higher than 2.1.0.
+
 __Remarks__:
 
-* The plugin is prepared and intended to run with any IMAP and POP3 email account, however 
+* The plugin is prepared and intended to run with any IMAP and POP3 email account, however
   some issues can accur due to security certificates.
 * When using SSL, please check that the machine has the proper certificates installed
   by running the following terminal commands:
