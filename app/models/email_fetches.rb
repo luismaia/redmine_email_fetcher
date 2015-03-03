@@ -36,7 +36,7 @@ module EmailFetches
     email_options = {
         host: self.host,
         port: self.port,
-        ssl: (self.ssl ? '1' : '0'),
+        ssl: (self.ssl ? '1' : nil),
         username: self.username,
         password: self.password,
         folder: nil,
