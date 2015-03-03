@@ -21,15 +21,16 @@ class EmailConfiguration < ActiveRecord::Base
   validates :tracker, presence: true
 
   validates :folder, presence: true,
-            uniqueness: {scope: [:host, :port, :username], message: l(:msg_unique_key_folder)}
+            uniqueness: { scope: [:host, :port, :username], message: l(:msg_unique_key_folder) }
 
   attr_accessible :configuration_type,
-                  :host, :port, :ssl, :folder, :move_on_failure, :move_on_success,
-                  :apop, :delete_unprocessed,
-                  :unknown_user, :allow_override, :no_account_notice, :no_permission_check,
-                  :username, :password,
+                  :host, :port, :ssl,
+                  :username, :password, :folder,
+                  :move_on_failure, :move_on_success, :delete_unprocessed, :apop,
+                  :unknown_user, :no_account_notice, :no_permission_check, :default_group,
                   :project_id, :tracker_id, :category, :issue_priority,
-                  :flg_active, :last_fetch_at
+                  :allow_override,
+                  :last_fetch_at, :flg_active
 
 
   # SCOPES
