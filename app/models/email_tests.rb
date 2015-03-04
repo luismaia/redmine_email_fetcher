@@ -38,7 +38,6 @@ module EmailTests
     rescue Net::IMAP::NoResponseError => e
       begin
         imap.disconnect
-      rescue
       end
       return test_failure(l(:msg_login_pass_incorrect), e)
     end
@@ -92,7 +91,7 @@ module EmailTests
     if exception.nil?
       message
     else
-      msg = message + " : (#{exception.message})"
+      "#{message} : (#{exception.message})"
     end
   end
 end

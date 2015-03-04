@@ -87,13 +87,15 @@ module EmailFetches
     if configuration_type == 'imap'
       Redmine::IMAP.check(email_options, MailHandler.extract_options_from_env(redmine_options))
       self.update_attributes!(last_fetch_at: Time.now)
-      return true
+      true
+
     elsif configuration_type == 'pop3'
       Redmine::POP3.check(email_options, MailHandler.extract_options_from_env(redmine_options))
       self.update_attributes!(last_fetch_at: Time.now)
-      return true
+      true
+
     else
-      return false
+      false
     end
   end
 end
