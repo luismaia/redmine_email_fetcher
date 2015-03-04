@@ -1,7 +1,6 @@
 namespace :redmine do
   namespace :plugins do
     namespace :email_fetcher do
-
       desc <<-END_DESC
 Fetch emails from all ACTIVE configured email accounts.
 
@@ -11,10 +10,9 @@ Examples:
   #
   rake redmine:plugins:email_fetcher:fetch_all_emails RAILS_ENV=production
       END_DESC
-      task fetch_all_emails: :environment do |t, args|
+      task fetch_all_emails: :environment do |_t, _args|
         EmailConfiguration.fetch_all_emails
       end
-
     end
   end
 end

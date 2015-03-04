@@ -1,3 +1,4 @@
+# Class responsible for handling EmailConfigurationsController model controller.
 class EmailConfigurationsController < ApplicationController
   unloadable
 
@@ -49,7 +50,7 @@ class EmailConfigurationsController < ApplicationController
         format.html { redirect_to email_configurations_url, notice: l(:mgs_email_configuration_create_success) }
         format.json { head :no_content }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @email_configuration.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +66,7 @@ class EmailConfigurationsController < ApplicationController
         format.html { redirect_to email_configurations_url, notice: l(:mgs_email_configuration_update_success) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @email_configuration.errors, status: :unprocessable_entity }
       end
     end
@@ -82,7 +83,6 @@ class EmailConfigurationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 
   # GET /email_configurations/1/fetch
   # GET /email_configurations/1/fetch.json
@@ -105,7 +105,6 @@ class EmailConfigurationsController < ApplicationController
     end
   end
 
-
   # GET /email_configurations/1/test
   # GET /email_configurations/1/test.json
   def test
@@ -126,5 +125,4 @@ class EmailConfigurationsController < ApplicationController
       end
     end
   end
-
 end

@@ -1,5 +1,5 @@
+# EmailConfiguration model class
 class EmailConfiguration < ActiveRecord::Base
-
   include Redmine::SafeAttributes
   include EmailTests
   include EmailFetches
@@ -8,7 +8,6 @@ class EmailConfiguration < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :tracker
-
 
   validates :host, presence: true
   validates :port, presence: true
@@ -20,7 +19,8 @@ class EmailConfiguration < ActiveRecord::Base
   validates :project, presence: true
   validates :tracker, presence: true
 
-  validates :folder, presence: true,
+  validates :folder,
+            presence: true,
             uniqueness: { scope: [:host, :port, :username], message: l(:msg_unique_key_folder) }
 
   attr_accessible :configuration_type,
@@ -32,27 +32,28 @@ class EmailConfiguration < ActiveRecord::Base
                   :allow_override,
                   :last_fetch_at, :flg_active
 
-
   # SCOPES
-  scope :active, -> {
-    where(flg_active: true) }
-
+  scope :active, -> { where(flg_active: true) }
 
   # Static  function to fetch all the emails from active email configurations
   def self.fetch_all_emails
     configurations = EmailConfiguration.active
+
     configurations.each do |email_config|
-      test_success, message = email_config.test_and_fetch_emails
-      msg = "Fetched '#{email_config.configuration_type.upcase}' account '#{email_config.username}' (folder '#{email_config.folder}') at '#{email_config.host}':'#{email_config.port}'"
+      test_success, _message = email_config.test_and_fetch_emails
 
       if test_success
-        puts "SUCCESS: #{msg}"
-        Rails.logger.info "SUCCESS : #{msg}"
+        Rails.logger.info "SUCCESS : #{log_msg(email_config)}"
       else
-        puts "ERROR : #{msg}"
-        Rails.logger.error "ERROR : #{msg}"
+        Rails.logger.error "ERROR : #{log_msg(email_config)}"
       end
     end
   end
 
+  def log_msg(email_config)
+    msg = "Fetched '#{email_config.configuration_type.upcase}' account '#{email_config.username}' "\
+      "(folder '#{email_config.folder}') at '#{email_config.host}':'#{email_config.port}'"
+
+    msg
+  end
 end

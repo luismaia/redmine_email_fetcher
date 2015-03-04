@@ -14,8 +14,8 @@ __Features__:
 
 __Restrictions__:
 
-* The plugin requires a Ruby version equal or higher than 1.9.x.
-* The plugin requires a Rails version equal or higher than 3.x.x.
+* The plugin requires a Ruby version equal or higher than 1.9.0.
+* The plugin requires a Rails version equal or higher than 3.0.0.
 * The plugin requires a Redmine version equal or higher than 2.1.0.
 
 __Remarks__:

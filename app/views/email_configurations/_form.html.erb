@@ -1,4 +1,4 @@
-<%= labelled_form_for @email_configuration, validate: true, html: {class: 'tabular'} do |f| -%>
+<%= labelled_form_for @email_configuration, validate: true, html: { class: 'tabular' } do |f| -%>
 
     <%= error_messages_for 'email_configuration' %>
 
@@ -6,14 +6,14 @@
       <fieldset class="box">
         <legend><%= l(:label_redmine_email_configuration) %></legend>
         <p><%= f.select :configuration_type, [['IMAP', 'imap'], ['POP3', 'pop3']],
-                        {include_blank: true, label: l(:field_configuration_type), required: true},
-                        {id: 'email_configuration_type'} %> </p>
+                        { include_blank: true, label: l(:field_configuration_type), required: true },
+                        { id: 'email_configuration_type' } %> </p>
 
         <p><%= f.select :flg_active, [['True', 'true'], ['False', 'false']],
-                        {label: l(:field_flg_active), required: true} %> </p>
+                        { label: l(:field_flg_active), required: true } %> </p>
 
         <p>
-          <%= f.label '', {label: l(:field_last_fetch_at)} %>
+          <%= f.label '', { label: l(:field_last_fetch_at) } %>
           <%- if @email_configuration.last_fetch_at.nil? %>
               <%= '---' %>
           <%- else %>
@@ -28,11 +28,11 @@
 
         <p><%= f.text_field :port, required: true, label: l(:field_port), placeholder: '(e.g. 993)' %> </p>
 
-        <p><%= f.select :ssl, [['True', 'true'], ['False', 'false']], {label: l(:field_ssl), required: true} %> </p>
+        <p><%= f.select :ssl, [['True', 'true'], ['False', 'false']], { label: l(:field_ssl), required: true } %> </p>
 
         <p><%= f.text_field :username, required: true, size: 127, label: l(:field_username) %> </p>
 
-        <p><%= f.password_field :password, {label: l(:field_password), required: true, size: 127, value: @email_configuration.password} %> </p>
+        <p><%= f.password_field :password, { label: l(:field_password), required: true, size: 127, value: @email_configuration.password } %> </p>
 
         <p><%= f.text_field :folder, required: true, size: 127, label: l(:field_folder), placeholder: '(e.g. INBOX)' %> </p>
 
@@ -43,23 +43,23 @@
         </div>
 
         <div id="pop3_email_only">
-          <p><%= f.select :apop, [['True', 'true'], ['False', 'false']], {label: l(:field_apop), required: true} %> </p>
+          <p><%= f.select :apop, [['True', 'true'], ['False', 'false']], { label: l(:field_apop), required: true } %> </p>
 
           <p><%= f.select :delete_unprocessed, [['True', 'true'], ['False', 'false']],
-                          {label: l(:field_delete_unprocessed), required: true} %> </p>
+                          { label: l(:field_delete_unprocessed), required: true } %> </p>
         </div>
       </fieldset>
 
       <fieldset class="box" id="redmine_email_new_sender_actions">
         <legend><%= l(:label_redmine_email_new_sender_actions) %></legend>
         <p><%= f.select :unknown_user, [['Accept', 'accept'], ['Create', 'create'], ['Ignore', 'ignore']],
-                        {label: l(:field_unknown_user), required: true} %> </p>
+                        { label: l(:field_unknown_user), required: true } %> </p>
 
         <p><%= f.select :no_account_notice, [['True', 'true'], ['False', 'false']],
-                        {label: l(:field_no_account_notice), required: true} %> </p>
+                        { label: l(:field_no_account_notice), required: true } %> </p>
 
         <p><%= f.select :no_permission_check, [['True', 'true'], ['False', 'false']],
-                        {label: l(:field_no_permission_check), required: true} %> </p>
+                        { label: l(:field_no_permission_check), required: true } %> </p>
 
         <p><%= f.text_field :default_group, size: 80, label: l(:field_default_group), placeholder: '(e.g. foo,bar)' %> </p>
       </fieldset>
@@ -67,7 +67,7 @@
       <fieldset class="box" id="redmine_email_new_issue_attribures">
         <legend><%= l(:label_redmine_email_new_issue_attribures) %></legend>
         <p><%= f.select :tracker_id, Tracker.order(:name).collect { |p| [p.name, p.id] },
-                        {include_blank: true, required: true, label: l(:field_tracker)} %> </p>
+                        { include_blank: true, required: true, label: l(:field_tracker) } %> </p>
 
         <p><%= f.text_field :category, size: 80, label: l(:field_category) %> </p>
 
@@ -80,7 +80,7 @@
         <br/>
         <%- @projects = Project.order(:name) -%>
         <fieldset class="box required" id="project">
-          <p><%= f.label '', {label: l(:field_project), required: true} %> </p>
+          <p><%= f.label '', { label: l(:field_project), required: true } %> </p>
 
           <div id="projects_list">
             <% if @projects.any? %>
