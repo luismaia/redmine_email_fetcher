@@ -42,9 +42,9 @@
           <td align="center"><%= format_object(config.last_fetch_at) %></td>
 
           <td class="buttons">
-            <%= link_to l(:button_edit), edit_email_configuration_path(config), :class => 'icon icon-edit' %>
-            <%= link_to l(:button_test), test_email_configuration_path(config), :class => 'icon icon-test' %>
-            <%= link_to l(:button_fetch), fetch_email_configuration_path(config), :class => 'icon icon-test' %>
+            <%= link_to l(:button_edit), edit_email_configuration_path(config), class: 'icon icon-edit' %>
+            <%= link_to l(:button_test), test_email_configuration_path(config), class: 'icon icon-test' %>
+            <%= link_to l(:button_fetch), fetch_email_configuration_path(config), class: 'icon icon-test' %>
           </td>
         </tr>
     <% end %>

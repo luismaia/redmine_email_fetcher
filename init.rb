@@ -23,7 +23,7 @@ else
     author 'Luis Maia'
     description 'This plugin allows the configuration of several IMAP and POP3 email accounts'\
     'from where emails can be fetch into Redmine'
-    version '0.0.2'
+    version '0.3.0'
     url 'https://github.com/luismaia/redmine_email_fetcher'
     author_url 'https://github.com/luismaia'
     requires_redmine version_or_higher: '2.1.0'

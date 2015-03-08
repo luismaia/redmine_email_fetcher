@@ -8,8 +8,6 @@ AllCops:
 # Line is too long.
 Metrics/LineLength:
   Max: 120 # Default: 80
-#  Exclude:
-#    - 'spec/models/*_spec.rb'
 
 #
 # Method has too many lines.
