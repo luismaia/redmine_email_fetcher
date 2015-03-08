@@ -29,6 +29,7 @@ __Remarks__:
 * The Categories and Priority fields are free text, so if you update their names it is your responsibility
   to update them accordingly in this plugin administration
 
+
 Installation & Upgrade
 ----------------------
 
@@ -80,6 +81,7 @@ You should now be able to see **Redmine Email Fetcher** in the administration ma
 
 2. Remove the plugin from the plugins folder: `#{RAILS_ROOT}/plugins`
 3. Restart Redmine.
+
 
 Usage
 -----
@@ -179,13 +181,6 @@ The tasks recognize three environment variables:
                identify errors. This is the default value.
 
 
-License
--------
-This plugin is released under the GPL v3 license. 
-
-See LICENSE for more information.
-
-
 Contributing
 ------------
 Feel free to contribute by adding more features or solving issues.
@@ -215,3 +210,10 @@ After make your changes and before send the PR to the project, please validate t
    RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
    RAILS_ENV=test bundle exec ruby -I test plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
    ```
+
+
+License
+-------
+This plugin is released under the GPL v3 license.
+
+See LICENSE for more information.
