@@ -1,4 +1,4 @@
-# EmailFetches model class
+# EmailFetches module
 module EmailFetches
   def test_and_fetch_emails
     test_success, message = test
@@ -87,15 +87,13 @@ module EmailFetches
     if configuration_type == 'imap'
       Redmine::IMAP.check(email_options, MailHandler.extract_options_from_env(redmine_options))
       self.update_attributes!(last_fetch_at: Time.now)
-      true
-
+      return true
     elsif configuration_type == 'pop3'
       Redmine::POP3.check(email_options, MailHandler.extract_options_from_env(redmine_options))
       self.update_attributes!(last_fetch_at: Time.now)
-      true
-
+      return true
     else
-      false
+      return false
     end
   end
 end

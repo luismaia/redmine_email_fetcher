@@ -1,4 +1,4 @@
-# EmailTests model class
+# EmailTests module
 module EmailTests
   require 'timeout'
   require 'net/imap'

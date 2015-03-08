@@ -17,9 +17,17 @@ Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Exclude:
     - 'db/migrate/**/*'
+    - 'test/**/*'
 
 #
 # Assignment Branch Condition size for change is too high.
 Metrics/AbcSize:
   Exclude:
     - 'db/migrate/**/*'
+    - 'test/**/*'
+
+#
+# Class definition is too long.
+Metrics/ClassLength:
+  Exclude:
+    - 'test/models/email_configuration_test.rb'

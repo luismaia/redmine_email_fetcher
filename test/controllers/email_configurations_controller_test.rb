@@ -1,7 +1,7 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-# EmailConfiguration Test class
-class EmailConfigurationTest < ActiveSupport::TestCase
+# EmailConfigurations Controller Test class
+class EmailConfigurationsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   def test_truth
     assert true
