@@ -194,10 +194,6 @@ All PR are very welcome.
 
 After make your changes and before send the PR to the project, please validate that:
 
-   ```
-   rake redmine:plugins:migrate NAME=email_fetcher VERSION=0 RAILS_ENV=production
-   ```
-
 + Rubocop doesn't detect offenses:
 
    ```
