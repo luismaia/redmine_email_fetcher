@@ -189,5 +189,25 @@ See LICENSE for more information.
 Contributing
 ------------
 Feel free to contribute by adding more features or solving issues.
-
 All PR are very welcome.
+
+After make your changes and before send the PR to the project, please validate that:
+
++ Rubocop has no complaints:
+
+
+    cd plugins/redmine_email_fetcher
+    rubocop --auto-correct
+
++ Tests are passing (tests need Redmine):
+
+
+    RAILS_ENV=test rake db:drop db:create db:migrate
+    RAILS_ENV=test rake redmine:plugins:migrate
+    RAILS_ENV=test rake redmine:load_default_data
+
+    RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/<<path_to_test>>
+
+    e.g.
+    RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
+    RAILS_ENV=test bundle exec ruby -I test plugins/redmine_email_fetcher/test/models/email_configuration_test.rb

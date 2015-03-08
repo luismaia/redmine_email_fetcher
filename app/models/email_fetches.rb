@@ -49,6 +49,9 @@ module EmailFetches
     email_options[:move_on_success] = move_on_success unless move_on_success.blank?
     email_options[:move_on_failure] = move_on_failure unless move_on_failure.blank?
 
+    default_status = IssueStatus.where(is_default: true).first
+    default_status_name = default_status.nil? ? nil : default_status.name
+
     ### Issue attributes control options:
     # project=PROJECT          identifier of the target project
     # status=STATUS            name of the target status
@@ -69,7 +72,7 @@ module EmailFetches
     #
     redmine_options = {
       'project' => project.identifier,
-      'status' => IssueStatus.where(is_default: true).first.name,
+      'status' => default_status_name,
       'tracker' => tracker.name,
       'category' => category,
       'priority' => priority,
