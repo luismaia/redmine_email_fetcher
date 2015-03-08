@@ -194,21 +194,28 @@ All PR are very welcome.
 
 After make your changes and before send the PR to the project, please validate that:
 
+   ```
+   rake redmine:plugins:migrate NAME=email_fetcher VERSION=0 RAILS_ENV=production
+   ```
+
 + Rubocop doesn't detect offenses:
 
-
-    cd plugins/redmine_email_fetcher
-    rubocop --auto-correct
+   ```
+   cd plugins/redmine_email_fetcher
+   rubocop --auto-correct
+   ```
 
 + Tests are passing (tests need Redmine):
 
+   ```
+   RAILS_ENV=test rake db:drop db:create db:migrate
+   RAILS_ENV=test rake redmine:plugins:migrate
+   RAILS_ENV=test rake redmine:load_default_data
+   ```
 
-    RAILS_ENV=test rake db:drop db:create db:migrate
-    RAILS_ENV=test rake redmine:plugins:migrate
-    RAILS_ENV=test rake redmine:load_default_data
-
-    RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/<<path_to_test>>
-
-    e.g.
-    RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
-    RAILS_ENV=test bundle exec ruby -I test plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
+   ```
+   RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/<path_to_test>
+   e.g.:
+   RAILS_ENV=test rake test TEST=plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
+   RAILS_ENV=test bundle exec ruby -I test plugins/redmine_email_fetcher/test/models/email_configuration_test.rb
+   ```
