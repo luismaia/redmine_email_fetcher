@@ -15,16 +15,20 @@ Metrics/LineLength:
 # Method has too many lines.
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
+  Max: 15 # Default: 10
   Exclude:
-    - 'db/migrate/**/*'
+    - 'app/models/email_tests.rb'
     - 'test/**/*'
+    - 'db/migrate/**/*'
 
 #
 # Assignment Branch Condition size for change is too high.
 Metrics/AbcSize:
+  Max: 20 # Default: 15
   Exclude:
-    - 'db/migrate/**/*'
+    - 'app/models/email_tests.rb'
     - 'test/**/*'
+    - 'db/migrate/**/*'
 
 #
 # Class definition is too long.

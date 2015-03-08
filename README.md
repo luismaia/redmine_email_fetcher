@@ -189,11 +189,12 @@ See LICENSE for more information.
 Contributing
 ------------
 Feel free to contribute by adding more features or solving issues.
+
 All PR are very welcome.
 
 After make your changes and before send the PR to the project, please validate that:
 
-+ Rubocop has no complaints:
++ Rubocop doesn't detect offenses:
 
 
     cd plugins/redmine_email_fetcher

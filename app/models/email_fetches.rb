@@ -15,6 +15,24 @@ module EmailFetches
   end
 
   def fetch_emails
+    email_options = build_email_options
+    redmine_options = build_redmine_options
+
+    # Execute Redmine functions and return
+    if configuration_type == 'imap'
+      Redmine::IMAP.check(email_options, MailHandler.extract_options_from_env(redmine_options))
+      self.update_attributes!(last_fetch_at: Time.now)
+      return true
+    elsif configuration_type == 'pop3'
+      Redmine::POP3.check(email_options, MailHandler.extract_options_from_env(redmine_options))
+      self.update_attributes!(last_fetch_at: Time.now)
+      return true
+    else
+      return false
+    end
+  end
+
+  def build_email_options
     ### Available General (IMAP + POP3) options:
     # host=HOST                IMAP server host
     # port=PORT                IMAP server port
@@ -32,26 +50,26 @@ module EmailFetches
     # delete_unprocessed=1     delete messages that could not be processed successfully from the server (default
     #                          behaviour is to leave them on the server) [POP3 ONLY]
     #
-    email_options = {
-      host: host,
-      port: port,
-      ssl: (ssl ? '1' : nil),
-      username: username,
-      password: password,
-      folder: nil,
+    email_options = { host: host,
+                      port: port,
+                      ssl: (ssl ? '1' : nil),
+                      username: username,
+                      password: password,
+                      folder: nil,
 
-      move_on_success: nil,
-      move_on_failure: nil,
-      apop: apop,
-      delete_unprocessed: delete_unprocessed
-    }
+                      move_on_success: nil,
+                      move_on_failure: nil,
+                      apop: apop,
+                      delete_unprocessed: delete_unprocessed }
+
     email_options[:folder] = folder unless folder.blank?
     email_options[:move_on_success] = move_on_success unless move_on_success.blank?
     email_options[:move_on_failure] = move_on_failure unless move_on_failure.blank?
 
-    default_status = IssueStatus.where(is_default: true).first
-    default_status_name = default_status.nil? ? nil : default_status.name
+    email_options
+  end
 
+  def build_redmine_options
     ### Issue attributes control options:
     # project=PROJECT          identifier of the target project
     # status=STATUS            name of the target status
@@ -70,33 +88,27 @@ module EmailFetches
     # no_account_notice=1      disable new user account notification
     # default_group=foo,bar    adds created user to foo and bar groups
     #
-    redmine_options = {
-      'project' => project.identifier,
-      'status' => default_status_name,
-      'tracker' => tracker.name,
-      'category' => category,
-      'priority' => priority,
-      'allow_override' => nil,
+    redmine_options = { project: project.identifier,
+                        status: default_status_name,
+                        tracker: tracker.name,
+                        category: category,
+                        priority: priority,
+                        allow_override: nil,
 
-      'unknown_user' => unknown_user,
-      'no_permission_check' => (no_permission_check ? '1' : '0'),
-      'no_account_notice' => (no_account_notice ? '1' : '0'),
-      'default_group' => nil
-    }
-    redmine_options['allow_override'] = allow_override unless allow_override.blank?
-    redmine_options['default_group'] = default_group unless default_group.blank?
+                        unknown_user: unknown_user,
+                        no_permission_check: (no_permission_check ? '1' : '0'),
+                        no_account_notice: (no_account_notice ? '1' : '0'),
+                        default_group: nil }
 
-    # Execute Redmine functions and return
-    if configuration_type == 'imap'
-      Redmine::IMAP.check(email_options, MailHandler.extract_options_from_env(redmine_options))
-      self.update_attributes!(last_fetch_at: Time.now)
-      return true
-    elsif configuration_type == 'pop3'
-      Redmine::POP3.check(email_options, MailHandler.extract_options_from_env(redmine_options))
-      self.update_attributes!(last_fetch_at: Time.now)
-      return true
-    else
-      return false
-    end
+    redmine_options[:allow_override] = allow_override unless allow_override.blank?
+    redmine_options[:default_group] = default_group unless default_group.blank?
+
+    redmine_options
+  end
+
+  def default_status_name
+    default_status = IssueStatus.default
+    default_status_name = default_status.nil? ? nil : default_status.name
+    default_status_name
   end
 end
