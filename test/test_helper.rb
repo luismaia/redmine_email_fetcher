@@ -1,5 +1,5 @@
 require 'simplecov'
-require 'simplecov-rcov'
+# require 'simplecov-rcov'
 
 # Coverage
 SimpleCov.start
