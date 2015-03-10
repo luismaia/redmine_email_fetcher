@@ -107,7 +107,9 @@ module EmailFetches
   end
 
   def default_status_name
-    default_status = IssueStatus.default
+    default_status = IssueStatus.default if Redmine::VERSION.to_s < '3.0.0'
+    default_status = IssueStatus.find_by_id(1) if Redmine::VERSION.to_s >= '3.0.0'
+
     default_status_name = default_status.nil? ? nil : default_status.name
     default_status_name
   end
