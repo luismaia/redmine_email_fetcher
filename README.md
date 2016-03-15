@@ -23,9 +23,8 @@ __Remarks__:
 * The plugin is prepared and intended to run with any IMAP and POP3 email account, however
   some issues can accur due to security certificates.
 * When using SSL, please check that the machine has the proper certificates installed
-  by running the following terminal commands:
-  * `openssl`
-  * `s_client -connect HOST:PORT`
+  by running the following terminal command:
+  * `openssl s_client -connect HOST:PORT`
 * The Categories and Priority fields are free text, so if you update their names it is your responsibility
   to update them accordingly in this plugin administration
 
