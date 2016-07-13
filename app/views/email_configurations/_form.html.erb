@@ -13,7 +13,7 @@
                         { label: l(:field_flg_active), required: true } %> </p>
 
         <p>
-          <%= f.label '', { label: l(:field_last_fetch_at) } %>
+          <%= f.label :last_fetch_at, { label: l(:field_last_fetch_at) } %>
           <%- if @email_configuration.last_fetch_at.nil? %>
               <%= '---' %>
           <%- else %>
@@ -24,22 +24,22 @@
 
       <fieldset class="box" id="email_server_attrs">
         <legend><%= l(:label_email_server) %></legend>
-        <p><%= f.text_field :host, required: true, size: 127, label: l(:field_host) %> </p>
+        <p><%= f.text_field :host, required: true, size: 80, label: l(:field_host) %> </p>
 
         <p><%= f.text_field :port, required: true, label: l(:field_port), placeholder: '(e.g. 993)' %> </p>
 
         <p><%= f.select :ssl, [['True', 'true'], ['False', 'false']], { label: l(:field_ssl), required: true } %> </p>
 
-        <p><%= f.text_field :username, required: true, size: 127, label: l(:field_username) %> </p>
+        <p><%= f.text_field :username, required: true, size: 80, label: l(:field_username) %> </p>
 
-        <p><%= f.password_field :password, { label: l(:field_password), required: true, size: 127, value: @email_configuration.password } %> </p>
+        <p><%= f.password_field :password, { label: l(:field_password), required: true, size: 80, value: @email_configuration.password } %> </p>
 
-        <p><%= f.text_field :folder, required: true, size: 127, label: l(:field_folder), placeholder: '(e.g. INBOX)' %> </p>
+        <p><%= f.text_field :folder, required: true, size: 80, label: l(:field_folder), placeholder: '(e.g. INBOX)' %> </p>
 
         <div id="imap_email_only">
-          <p><%= f.text_field :move_on_success, size: 127, label: l(:field_move_on_success) %> </p>
+          <p><%= f.text_field :move_on_success, size: 80, label: l(:field_move_on_success) %> </p>
 
-          <p><%= f.text_field :move_on_failure, size: 127, label: l(:field_move_on_failure) %> </p>
+          <p><%= f.text_field :move_on_failure, size: 80, label: l(:field_move_on_failure) %> </p>
         </div>
 
         <div id="pop3_email_only">
@@ -80,7 +80,7 @@
         <br/>
         <%- @projects = Project.order(:name) -%>
         <fieldset class="box required" id="project">
-          <p><%= f.label '', { label: l(:field_project), required: true } %> </p>
+          <p><%= f.label :project, { label: l(:field_project), required: true } %> </p>
 
           <div id="projects_list">
             <% if @projects.any? %>
