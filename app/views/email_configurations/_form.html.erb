@@ -13,7 +13,7 @@
                         { label: l(:field_flg_active), required: true } %> </p>
 
         <p>
-          <%= f.label ' ', { label: l(:field_last_fetch_at) } %>
+          <%= f.label :last_fetch_at, { label: l(:field_last_fetch_at) } %>
           <%- if @email_configuration.last_fetch_at.nil? %>
               <%= '---' %>
           <%- else %>
@@ -80,7 +80,7 @@
         <br/>
         <%- @projects = Project.order(:name) -%>
         <fieldset class="box required" id="project">
-          <p><%= f.label ' ', { label: l(:field_project), required: true } %> </p>
+          <p><%= f.label :project, { label: l(:field_project), required: true } %> </p>
 
           <div id="projects_list">
             <% if @projects.any? %>
