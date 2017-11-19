@@ -9,11 +9,11 @@
                         { include_blank: true, label: l(:field_configuration_type), required: true },
                         { id: 'email_configuration_type' } %> </p>
 
-        <p><%= f.select :flg_active, [['True', 'true'], ['False', 'false']],
+        <p><%= f.select :flg_active, [[l(:choice_true), 'true'], [l(:choice_false), 'false']],
                         { label: l(:field_flg_active), required: true } %> </p>
 
         <p>
-          <%= f.label '', { label: l(:field_last_fetch_at) } %>
+          <%= f.label :last_fetch_at, { label: l(:field_last_fetch_at) } %>
           <%- if @email_configuration.last_fetch_at.nil? %>
               <%= '---' %>
           <%- else %>
@@ -28,7 +28,7 @@
 
         <p><%= f.text_field :port, required: true, label: l(:field_port), placeholder: '(e.g. 993)' %> </p>
 
-        <p><%= f.select :ssl, [['True', 'true'], ['False', 'false']], { label: l(:field_ssl), required: true } %> </p>
+        <p><%= f.select :ssl, [[l(:choice_true), 'true'], [l(:choice_false), 'false']], { label: l(:field_ssl), required: true } %> </p>
 
         <p><%= f.text_field :username, required: true, size: 127, label: l(:field_username) %> </p>
 
@@ -43,22 +43,22 @@
         </div>
 
         <div id="pop3_email_only">
-          <p><%= f.select :apop, [['True', 'true'], ['False', 'false']], { label: l(:field_apop), required: true } %> </p>
+          <p><%= f.select :apop, [[l(:choice_true), 'true'], [l(:choice_false), 'false']], { label: l(:field_apop), required: true } %> </p>
 
-          <p><%= f.select :delete_unprocessed, [['True', 'true'], ['False', 'false']],
+          <p><%= f.select :delete_unprocessed, [[l(:choice_true), 'true'], [l(:choice_false), 'false']],
                           { label: l(:field_delete_unprocessed), required: true } %> </p>
         </div>
       </fieldset>
 
       <fieldset class="box" id="redmine_email_new_sender_actions">
         <legend><%= l(:label_redmine_email_new_sender_actions) %></legend>
-        <p><%= f.select :unknown_user, [['Accept', 'accept'], ['Create', 'create'], ['Ignore', 'ignore']],
+        <p><%= f.select :unknown_user, [[l(:choice_accept), 'accept'], [l(:choice_create), 'create'], [l(:choice_ignore), 'ignore']],
                         { label: l(:field_unknown_user), required: true } %> </p>
 
-        <p><%= f.select :no_account_notice, [['True', 'true'], ['False', 'false']],
+        <p><%= f.select :no_account_notice, [[l(:choice_true), 'true'], [l(:choice_false), 'false']],
                         { label: l(:field_no_account_notice), required: true } %> </p>
 
-        <p><%= f.select :no_permission_check, [['True', 'true'], ['False', 'false']],
+        <p><%= f.select :no_permission_check, [[l(:choice_true), 'true'], [l(:choice_false), 'false']],
                         { label: l(:field_no_permission_check), required: true } %> </p>
 
         <p><%= f.text_field :default_group, size: 80, label: l(:field_default_group), placeholder: '(e.g. foo,bar)' %> </p>
@@ -80,7 +80,7 @@
         <br/>
         <%- @projects = Project.order(:name) -%>
         <fieldset class="box required" id="project">
-          <p><%= f.label '', { label: l(:field_project), required: true } %> </p>
+          <p><%= f.label :project, { label: l(:field_project), required: true } %> </p>
 
           <div id="projects_list">
             <% if @projects.any? %>
