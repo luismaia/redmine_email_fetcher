@@ -43,7 +43,7 @@ class EmailConfigurationsController < ApplicationController
   # POST /email_configurations
   # POST /email_configurations.json
   def create
-    @email_configuration = EmailConfiguration.new(params[:email_configuration])
+    @email_configuration = EmailConfiguration.new(email_params) #params[:email_configuration])
 
     respond_to do |format|
       if @email_configuration.save
@@ -62,7 +62,7 @@ class EmailConfigurationsController < ApplicationController
     @email_configuration = EmailConfiguration.find(params[:id])
 
     respond_to do |format|
-      if @email_configuration.update_attributes(params[:email_configuration])
+      if @email_configuration.update_attributes(email_params)
         format.html { redirect_to email_configurations_url, notice: l(:mgs_email_configuration_update_success) }
         format.json { head :no_content }
       else
@@ -125,4 +125,17 @@ class EmailConfigurationsController < ApplicationController
       end
     end
   end
+
+  private
+    def email_params
+      params.require(:email_configuration).permit(:configuration_type,
+                  :host, :port, :ssl,
+                  :username, :password, :folder,
+                  :move_on_failure, :move_on_success, :delete_unprocessed, :apop,
+                  :unknown_user, :no_account_notice, :no_permission_check, :default_group,
+                  :project_id, :tracker_id, :category, :priority,
+                  :allow_override,
+                  :last_fetch_at, :flg_active)
+    end
+
 end

@@ -1,4 +1,5 @@
 # EmailFetches module
+require "redmine/pop3"
 module EmailFetches
   def test_and_fetch_emails
     test_success, message = test

@@ -61,3 +61,8 @@ en:
   msg_no_projects: 'There are no projects to associate'
 
   button_fetch: 'Fetch'
+  choice_true: 'True'
+  choice_false: 'False'
+  choice_accept: 'Accept'
+  
+  
