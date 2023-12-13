@@ -43,7 +43,7 @@ class EmailConfigurationsController < ApplicationController
   # POST /email_configurations
   # POST /email_configurations.json
   def create
-    @email_configuration = EmailConfiguration.new(email_params) #params[:email_configuration])
+    @email_configuration = EmailConfiguration.new(email_params) 
 
     respond_to do |format|
       if @email_configuration.save
